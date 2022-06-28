@@ -90,18 +90,22 @@ body{
             var minutesSpan = clock.querySelector('.minutes');
             var secondsSpan = clock.querySelector('.seconds');
 
-            function updateClock() {
-                var t = getTimeRemaining(endtime);
 
-                daysSpan.innerHTML = t.days;
-                hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-                minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-                secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+function updateClock() {
+                    var t = getTimeRemaining(endtime);
+                    if (t.seconds < "0") {
 
-                if (t.total <= 0) {
-                    clearInterval(timeinterval);
+                        document.querySelector("#clockdiv").innerText = "Chegou a hora!!!"
+
+                    } else {
+                        daysSpan.innerHTML = t.days;
+                        hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+                        minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+                        secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+                    }
                 }
-            }
+
+
 
             updateClock();
             var timeinterval = setInterval(updateClock, 1000);
